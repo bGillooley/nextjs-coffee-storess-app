@@ -1,0 +1,26 @@
+import { findRecordsByFilter } from "../../lib/airtable";
+
+const getCoffeeStorebyId = async (req, res) => {
+  const { id } = req.query;
+
+  try {
+    if (id) {
+      //res.json({ message: `${id} was create so it was` });
+      const records = await findRecordsByFilter(id);
+      if (records.length !== 0) {
+        res.json(records);
+      } else {
+        res.json({ message: "id could not be found" });
+      }
+    } else {
+      res.status(400);
+      res.json({ message: "id is missing or does not exist" });
+    }
+  } catch (err) {
+    res.status(500);
+    res.json({ message: "Something went wrong, see...", err });
+    console.error(err);
+  }
+};
+
+export default getCoffeeStorebyId;
