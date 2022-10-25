@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     domains: ["images.unsplash.com", "i0.wp.com"],
   },
+  target: "serverless",
 };
 
 module.exports = nextConfig;
